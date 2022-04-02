@@ -43,3 +43,55 @@ exports.blogPost = (req, res) => {
     }
   );
 };
+
+exports.blogDetail = (req, res) => {
+  let index = req.params.id;
+  db.query(`SELECT * FROM tb_blog WHERE id = $1`, [index], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    let data = results.rows[0];
+    let icon = data.technologies;
+    let data_object = {
+      id: data.id,
+      project: data.name,
+      description: data.description,
+      start_date: data.start_date,
+      end_date: data.end_date,
+      date: getDate(data.start_date, data.end_date),
+      date_moth: dateMonth(data.start_date, data.end_date),
+    };
+    res.render("detail", data_object);
+  });
+};
+
+exports.blogDelete = (req, res) => {
+  let index = req.params.id;
+  db.query(`DELETE FROM tb_blog WHERE id = $1`, [index], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.redirect("/");
+  });
+};
+
+exports.blogDetailedit = (req, res) => {
+  let index = req.params.id;
+  db.query(`SELECT * FROM tb_blog WHERE id = $1`, [index], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    let data = results.rows[0];
+    let icon = data.technologies;
+    let data_object = {
+      id: data.id,
+      project: data.name,
+      description: data.description,
+      start_date: data.start_date,
+      end_date: data.end_date,
+      date: getDate(data.start_date, data.end_date),
+      date_moth: dateMonth(data.start_date, data.end_date),
+    };
+    res.render("edit-project", data_object);
+  });
+};

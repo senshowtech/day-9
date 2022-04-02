@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Day 7</title>
+    <title>Day 4</title>
     <link rel="stylesheet" href="/public/css/style.css" />
     <link rel="stylesheet" href="/public/css/navbar.css" />
     <link rel="stylesheet" href="/public/css/blog.css">
@@ -109,7 +109,7 @@
         {{#each list}}
         <div class="box-blog1">
           <img src="/public/img/evan-you-hero.jpg" class="image-blog" alt="" />
-          <a href="/detail-project/{{@index}}">
+          <a href="/detail-project/{{this.id}}">
             <h3>{{this.name}}</h3>
           </a>
           <p>durasi: {{this.date}}</p>
@@ -123,10 +123,10 @@
 
           <div class="button-group-parent my-3">
             <div class="button-child">
-              <a class="button-edit" href="/edit-project/{{@index}}">Edit</a>
+              <a class="button-edit" href="/edit-project/{{this.id}}">Edit</a>
             </div>
             <div class="button-child">
-              <a class="button-delete" href="/delete-project/{{@index}}">Delete</a>
+              <a class="button-delete" href="/delete-project/{{this.id}}">Delete</a>
             </div>
           </div>
         </div>

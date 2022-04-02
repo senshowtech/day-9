@@ -18,8 +18,6 @@ exports.getDate = (get_start_date, get_end_date) => {
 };
 
 exports.dateMonth = (get_start_date, get_end_date) => {
-  let start_date_split = get_start_date.split("-");
-  let end_date_split = get_end_date.split("-");
   let nama_bulan = [
     "Januari",
     "Februari",
@@ -34,12 +32,12 @@ exports.dateMonth = (get_start_date, get_end_date) => {
     "November",
     "Desember",
   ];
-  let hari_start = start_date_split[2];
-  let hari_end = end_date_split[2];
-  let tahun_start = start_date_split[0];
-  let tahun_end = end_date_split[0];
-  let bulan_start = nama_bulan[parseInt(start_date_split[1]) - 1];
-  let bulan_end = nama_bulan[parseInt(end_date_split[1]) - 1];
+  hari_start = get_start_date.getDate();
+  hari_end = get_end_date.getDate();
+  bulan_start = nama_bulan[get_start_date.getMonth()];
+  bulan_end = nama_bulan[get_end_date.getMonth()];
+  tahun_start = get_start_date.getFullYear();
+  tahun_end = get_end_date.getFullYear();
   let akhir = `${hari_start} ${bulan_start} ${tahun_start} - ${hari_end} ${bulan_end} ${tahun_end}`;
   return akhir;
 };

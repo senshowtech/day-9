@@ -21,19 +21,27 @@ exports.checkboxLogic = (nodejs, vuejs, python, reactjs) => {
   }
 };
 
-exports.checkboxCreate = (nodejs, vuejs, python, react) => {
-  let array = [];
-  if (nodejs != null) {
-    array.push(String(nodejs));
+exports.checkboxCreate = (nodejs, vuejs, react, python) => {
+  let array = [nodejs, vuejs, react, python];
+  let data = array.filter((element) => {
+    return element !== undefined;
+  });
+  return data;
+};
+
+exports.checkboxDetail = (nodejs, vuejs, python, reactjs) => {
+  let bersebrangan = false;
+  if (reactjs != null && python != null && vuejs == null && nodejs == null) {
+    bersebrangan = true;
+  } else if (
+    nodejs != null &&
+    vuejs != null &&
+    reactjs == null &&
+    python == null
+  ) {
+    bersebrangan = true;
+  } else {
+    bersebrangan = false;
   }
-  if (vuejs != null) {
-    array.push(String(vuejs));
-  }
-  if (react != null) {
-    array.push(String(react));
-  }
-  if (python != null) {
-    array.push(String(python));
-  }
-  return array;
+  return bersebrangan;
 };
