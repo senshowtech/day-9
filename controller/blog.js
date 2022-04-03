@@ -14,6 +14,12 @@ const {
 
 const db = require("../config/db.js");
 
+let isLogin = true;
+
+exports.blogContact = (req, res) => {
+  return res.render("contact");
+};
+
 exports.blogData = (req, res) => {
   db.query("SELECT * FROM tb_blog", (error, results) => {
     if (error) {
@@ -23,9 +29,10 @@ exports.blogData = (req, res) => {
       return {
         ...value,
         date: getDate(value.start_date, value.end_date),
+        isLogin: isLogin,
       };
     });
-    res.render("index", { list: blogs });
+    res.render("index", { isLogin, list: blogs });
   });
 };
 
