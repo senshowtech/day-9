@@ -21,6 +21,28 @@ exports.checkboxLogic = (nodejs, vuejs, python, reactjs) => {
   }
 };
 
+exports.checkboxDetail = (nodejs, vuejs, python, reactjs) => {
+  let bersebrangan = false;
+  if (
+    reactjs != false &&
+    python != false &&
+    vuejs == false &&
+    nodejs == false
+  ) {
+    bersebrangan = true;
+  } else if (
+    nodejs != false &&
+    vuejs != false &&
+    reactjs == false &&
+    python == false
+  ) {
+    bersebrangan = true;
+  } else {
+    bersebrangan = false;
+  }
+  return bersebrangan;
+};
+
 exports.checkboxCreate = (nodejs, vuejs, react, python) => {
   let array = [nodejs, vuejs, react, python];
   let data = array.filter((element) => {
@@ -29,19 +51,22 @@ exports.checkboxCreate = (nodejs, vuejs, react, python) => {
   return data;
 };
 
-exports.checkboxDetail = (nodejs, vuejs, python, reactjs) => {
-  let bersebrangan = false;
-  if (reactjs != null && python != null && vuejs == null && nodejs == null) {
-    bersebrangan = true;
-  } else if (
-    nodejs != null &&
-    vuejs != null &&
-    reactjs == null &&
-    python == null
-  ) {
-    bersebrangan = true;
-  } else {
-    bersebrangan = false;
+exports.checkboxDetailArray = (icon) => {
+  let icons = icon;
+  let nodejs = false;
+  let vuejs = false;
+  let python = false;
+  let reactjs = false;
+  for (let i in icons) {
+    if (icons[i] == "node-js") {
+      nodejs = true;
+    } else if (icons[i] == "vuejs") {
+      vuejs = true;
+    } else if (icons[i] == "python") {
+      python = true;
+    } else if (icons[i] == "react") {
+      reactjs = true;
+    }
   }
-  return bersebrangan;
+  return [nodejs, vuejs, python, reactjs];
 };

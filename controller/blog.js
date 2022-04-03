@@ -4,7 +4,14 @@ const {
   startdateEdit,
   enddateEdit,
 } = require("./waktu.js");
-const { checkboxLogic, checkboxCreate } = require("./checkbox.js");
+
+const {
+  checkboxLogic,
+  checkboxDetail,
+  checkboxCreate,
+  checkboxDetailArray,
+} = require("./checkbox.js");
+
 const db = require("../config/db.js");
 
 exports.blogData = (req, res) => {
@@ -57,6 +64,10 @@ exports.blogDetail = (req, res) => {
     }
     let data = results.rows[0];
     let icon = data.technologies;
+    let nodejs = checkboxDetailArray(icon)[0];
+    let vuejs = checkboxDetailArray(icon)[1];
+    let python = checkboxDetailArray(icon)[2];
+    let reactjs = checkboxDetailArray(icon)[3];
     let data_object = {
       id: data.id,
       project: data.name,
@@ -65,6 +76,11 @@ exports.blogDetail = (req, res) => {
       end_date: data.end_date,
       date: getDate(data.start_date, data.end_date),
       date_moth: dateMonth(data.start_date, data.end_date),
+      nodejs: nodejs,
+      vuejs: vuejs,
+      python: python,
+      reactjs: reactjs,
+      icon: checkboxDetail(nodejs, vuejs, python, reactjs),
     };
     res.render("detail", data_object);
   });
