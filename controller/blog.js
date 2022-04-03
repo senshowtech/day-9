@@ -116,7 +116,6 @@ exports.blogDetailedit = (req, res) => {
       python_html: python,
       reactjs_html: reactjs,
     };
-    console.log(data_object);
     res.render("edit-project", data_object);
   });
 };
