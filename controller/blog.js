@@ -104,6 +104,11 @@ exports.blogDetailedit = (req, res) => {
     }
     let data = results.rows[0];
     let icon = data.technologies;
+    let nodejs = checkboxDetailArray(icon)[0];
+    let vuejs = checkboxDetailArray(icon)[1];
+    let python = checkboxDetailArray(icon)[2];
+    let reactjs = checkboxDetailArray(icon)[3];
+    checkboxLogic(nodejs, vuejs, python, reactjs);
     let data_object = {
       id: data.id,
       project: data.name,
@@ -112,7 +117,12 @@ exports.blogDetailedit = (req, res) => {
       end_date: enddateEdit(data.end_date),
       date: getDate(data.start_date, data.end_date),
       date_moth: dateMonth(data.start_date, data.end_date),
+      nodejs_html: nodejs,
+      vuejs_html: vuejs,
+      python_html: python,
+      reactjs_html: reactjs,
     };
+
     res.render("edit-project", data_object);
   });
 };

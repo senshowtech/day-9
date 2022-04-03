@@ -1,20 +1,20 @@
 exports.checkboxLogic = (nodejs, vuejs, python, reactjs) => {
-  if (nodejs != null) {
+  if (nodejs != false) {
     nodejs = true;
   } else {
     nodejs = false;
   }
-  if (vuejs != null) {
+  if (vuejs != false) {
     vuejs = true;
   } else {
     vuejs = false;
   }
-  if (python != null) {
+  if (python != false) {
     python = true;
   } else {
     python = false;
   }
-  if (reactjs != null) {
+  if (reactjs != false) {
     reactjs = true;
   } else {
     reactjs = false;
