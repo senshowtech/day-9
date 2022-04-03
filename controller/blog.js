@@ -42,6 +42,7 @@ exports.blogPost = (req, res) => {
     "INSERT INTO tb_blog (description, technologies, name, start_date, end_date) VALUES ($1, $2, $3, $4, $5)",
     [
       req.body.inputdescription,
+      // buat array untuk di masukkan ke db
       checkboxCreate(nodejs, vuejs, react, python),
       req.body.inputproject,
       req.body.inputstartdate,
@@ -81,19 +82,10 @@ exports.blogDetail = (req, res) => {
       vuejs: vuejs,
       python: python,
       reactjs: reactjs,
+      // ubah template jika bersebrangan
       icon: checkboxDetail(nodejs, vuejs, python, reactjs),
     };
     res.render("detail", data_object);
-  });
-};
-
-exports.blogDelete = (req, res) => {
-  let index = req.params.id;
-  db.query(`DELETE FROM tb_blog WHERE id = $1`, [index], (error, results) => {
-    if (error) {
-      throw error;
-    }
-    res.redirect("/");
   });
 };
 
@@ -109,6 +101,7 @@ exports.blogDetailedit = (req, res) => {
     let vuejs = checkboxDetailArray(icon)[1];
     let python = checkboxDetailArray(icon)[2];
     let reactjs = checkboxDetailArray(icon)[3];
+    // untuk ubah nilai yang di checklist dan tidak
     checkboxLogic(nodejs, vuejs, python, reactjs);
     let data_object = {
       id: data.id,
@@ -123,7 +116,17 @@ exports.blogDetailedit = (req, res) => {
       python_html: python,
       reactjs_html: reactjs,
     };
-
+    console.log(data_object);
     res.render("edit-project", data_object);
+  });
+};
+
+exports.blogDelete = (req, res) => {
+  let index = req.params.id;
+  db.query(`DELETE FROM tb_blog WHERE id = $1`, [index], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.redirect("/");
   });
 };
