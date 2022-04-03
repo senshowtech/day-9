@@ -64,6 +64,7 @@ exports.blogDetail = (req, res) => {
     }
     let data = results.rows[0];
     let icon = data.technologies;
+    // let array = checkboxDetailArray(icon)
     let nodejs = checkboxDetailArray(icon)[0];
     let vuejs = checkboxDetailArray(icon)[1];
     let python = checkboxDetailArray(icon)[2];
