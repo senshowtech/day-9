@@ -41,3 +41,27 @@ exports.dateMonth = (get_start_date, get_end_date) => {
   let akhir = `${hari_start} ${bulan_start} ${tahun_start} - ${hari_end} ${bulan_end} ${tahun_end}`;
   return akhir;
 };
+
+exports.startdateEdit = (start_date) => {
+  let startdate = new Date(start_date);
+  const result = startdate.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  let result_split = result.split("/");
+  let final_result = `${result_split[2]}-${result_split[1]}-${result_split[0]}`;
+  return final_result;
+};
+
+exports.enddateEdit = (end_date) => {
+  let startdate = new Date(end_date);
+  const result = startdate.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  let result_split = result.split("/");
+  let final_result = `${result_split[2]}-${result_split[1]}-${result_split[0]}`;
+  return final_result;
+};

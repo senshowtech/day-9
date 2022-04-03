@@ -1,4 +1,9 @@
-const { getDate, dateMonth } = require("./waktu.js");
+const {
+  getDate,
+  dateMonth,
+  startdateEdit,
+  enddateEdit,
+} = require("./waktu.js");
 const { checkboxLogic, checkboxCreate } = require("./checkbox.js");
 const db = require("../config/db.js");
 
@@ -87,8 +92,8 @@ exports.blogDetailedit = (req, res) => {
       id: data.id,
       project: data.name,
       description: data.description,
-      start_date: data.start_date,
-      end_date: data.end_date,
+      start_date: startdateEdit(data.start_date),
+      end_date: enddateEdit(data.end_date),
       date: getDate(data.start_date, data.end_date),
       date_moth: dateMonth(data.start_date, data.end_date),
     };
