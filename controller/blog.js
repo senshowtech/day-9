@@ -122,9 +122,35 @@ exports.blogDetailedit = (req, res) => {
       vuejs_html: vuejs,
       python_html: python,
       reactjs_html: reactjs,
+      index: index,
     };
     res.render("edit-project", data_object);
   });
+};
+
+exports.blogEdit = (req, res) => {
+  let nodejs = req.body.nodejs;
+  let vuejs = req.body.vuejs;
+  let react = req.body.reactjs;
+  let python = req.body.python;
+  db.query(
+    "UPDATE tb_blog SET description = $1, technologies = $2, name = $3, start_date = $4, end_date = $5 WHERE Id = $6",
+    [
+      req.body.inputdescription,
+      // buat array untuk di masukkan ke db
+      checkboxCreate(nodejs, vuejs, react, python),
+      req.body.inputproject,
+      req.body.inputstartdate,
+      req.body.inputenddate,
+      req.body.id,
+    ],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.redirect("/");
+    }
+  );
 };
 
 exports.blogDelete = (req, res) => {
